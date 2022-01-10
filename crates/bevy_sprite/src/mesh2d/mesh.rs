@@ -195,10 +195,7 @@ impl FromWorld for Mesh2dPipeline {
                 texture,
                 texture_view,
                 sampler,
-                size: Vec2::new(
-                    image.texture_descriptor.size.width as f32,
-                    image.texture_descriptor.size.height as f32,
-                ),
+                size: image.size(),
             }
         };
         Mesh2dPipeline {

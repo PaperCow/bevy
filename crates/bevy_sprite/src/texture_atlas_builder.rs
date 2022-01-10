@@ -227,10 +227,7 @@ impl TextureAtlasBuilder {
             self.copy_converted_texture(&mut atlas_texture, texture, packed_location);
         }
         Ok(TextureAtlas {
-            size: Vec2::new(
-                atlas_texture.texture_descriptor.size.width as f32,
-                atlas_texture.texture_descriptor.size.height as f32,
-            ),
+            size: atlas_texture.size(),
             texture: textures.add(atlas_texture),
             textures: texture_rects,
             texture_handles: Some(texture_handles),

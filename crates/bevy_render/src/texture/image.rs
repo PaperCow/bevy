@@ -118,6 +118,14 @@ impl Image {
         self.texture_descriptor.size.height as f32 / self.texture_descriptor.size.width as f32
     }
 
+    /// Returns the size of the image.
+    pub fn size(&self) -> Vec2 {
+        Vec2::new(
+            self.texture_descriptor.size.width as f32,
+            self.texture_descriptor.size.height as f32,
+        )
+    }
+
     /// Resizes the image to the new size, by removing information or appending 0 to the `data`.
     /// Does not properly resize the contents of the image, but only its internal `data` buffer.
     pub fn resize(&mut self, size: Extent3d) {
@@ -428,10 +436,7 @@ impl RenderAsset for Image {
         );
 
         let texture_view = texture.create_view(&TextureViewDescriptor::default());
-        let size = Vec2::new(
-            image.texture_descriptor.size.width as f32,
-            image.texture_descriptor.size.height as f32,
-        );
+        let size = image.size();
         Ok(GpuImage {
             texture,
             texture_view,
